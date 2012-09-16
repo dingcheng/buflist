@@ -1,0 +1,40 @@
+extends layout
+block stylesheet
+	link(rel='stylesheet', href='/stylesheets/searchresult.css')
+block content
+	#sidebar
+		ul
+			li
+				a(href='/') 主页
+			li
+				a(href='/newpost') 发帖
+	#container
+		.editbox
+			form.newpost(method='post')
+					fieldset
+						legend 基本信息
+						ol
+							li
+								label 标题*：
+								input(type='text',name='title')
+							li
+								label 标签(Tags)*：
+								input.short(type='text',name='tags')
+							li
+								label Email*：
+								input(type='text',name='email')
+							li
+								label 手机：
+								input(type='text',name='cellnum')
+							li
+								label Zip Code*：
+								input(type='text',name='zipcode')
+							li
+								label 地址*：
+								input(type='text',name='address')
+					fieldset
+						legend 内容
+						textarea(rows='10',cols='65',name='content')
+					fieldset
+						input(type='submit',name='submit',value='提交')
+						input(type='submit',name='submit',value='取消')

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+	#container
+		h1 Buf's List
+		#searchbar
+			form(method='post')
+				div
+					input(type='text',name='searchbox')
+					input(type='submit',name='search',value='搜索')
+				div
+					input(type='submit',name='post',value='发布信息')
+		#centerbox
+			.linebox
+				span
+					a(href='/tagshow/auto') 汽车
+				span
+					a(href='/tagshow/rental') 租房
+			.linebox
+				span
+					a(href='/tagshow/sale') 甩卖
+				span
+					a(href='/tagshow/etc') 其他

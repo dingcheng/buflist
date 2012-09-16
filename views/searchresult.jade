@@ -1,0 +1,63 @@
+extends layout
+
+block stylesheet
+	link(rel='stylesheet', href='/stylesheets/searchresult.css')
+
+block content
+	#sidebar
+		ul
+			li
+				a(href='/') 主页
+			li
+				a(href='/newpost') 发帖
+	#container
+		.toolbar
+			#searchbar.tunebar
+				form(method='post')
+					input(type='submit',value='搜索')
+					input(type='text',name='searchbox')
+					fieldset
+						legend 价格范围：
+						input(type='text',name='minprice')
+						input(type='text',name='maxprice')
+					fieldset
+						label 时效：
+						select(name='during')
+							option(value='today') 当天
+							option(value='week') 一周
+							option(value='month') 一个月
+							option(value='season') 一季度
+			.tunebar
+				a(href='#') 显示图片
+				|  |
+				span
+					|  排序标准：
+					a(href='#') 最新
+					| |
+					a(href='#') 最匹配
+					| |
+					a(href='#') 最便宜
+					| |
+					a(href='#') 最贵
+			.tunebar
+				div
+					| #{total}条结果，当前显示：#{showingfrom} - #{showingto}
+				div
+					a(href='#') 前一页
+					| [ 
+					-for (var i = 1; i <= pagecount; i++)
+						a(href='#{i}') #{i}
+						|  
+					|  ]
+					a(href='#') 下一页
+		hr/
+		#searchresults
+				-for(var id in items)
+					- var item = items[id]
+					.item
+						| #{item.date} - $#{item.price} - 
+						a(href='/post/#{id}') #{item.title}  
+						span
+							-for(var tag in item.tags)
+								|  | 
+								a.tag(href='/tag/#{item.tags[tag]}') ##{item.tags[tag]}
